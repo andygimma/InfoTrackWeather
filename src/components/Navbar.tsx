@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
             <button
               onClick={toggleMenu}
               aria-label="Toggle menu"
-              className="text-gray-700 hover:text-blue-600 focus:outline-none"
+              className="text-gray-700 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
