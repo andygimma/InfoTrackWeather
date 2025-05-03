@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import useGeoLocation from "./hooks/useGeolocation/useGeolocation";
 
 function App() {
@@ -7,12 +7,11 @@ function App() {
     <div>
       <Navbar />
       <main className="pt-20 px-8">
-        <p>Loading: {loading}</p>
+        {loading && <p>Please allow location services</p>}
         <p>
           Location: {location?.latitude} {location?.longitude}
         </p>
-        <p>Error: {error}</p>
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+        {error && <p>Error: {error}</p>}
       </main>
     </div>
   );
