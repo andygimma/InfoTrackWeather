@@ -19,8 +19,13 @@ const Navbar: React.FC = () => {
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
   return (
+    // <nav
+    //   className="bg-white shadow-md fixed top-0 left-0 right-0 z-50"
+    //   role="navigation"
+    //   aria-label="Main navigation"
+    // >
     <nav
-      className="bg-white shadow-md fixed top-0 left-0 right-0 z-50"
+      className="bg-white shadow-md static top-0 left-0 right-0 z-50"
       role="navigation"
       aria-label="Main navigation"
     >
