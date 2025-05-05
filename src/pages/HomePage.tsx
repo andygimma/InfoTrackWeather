@@ -1,3 +1,5 @@
+import DailyWeather from "../components/DailyWeather/DailyWeather";
+import HourlyWeather from "../components/HourlyWeather/HourlyWeather";
 import { useWeather } from "../context/weatherContext";
 
 const HomePage = () => {
@@ -13,52 +15,8 @@ const HomePage = () => {
         {error && <p>Error: {error}</p>}
 
         <section className="flex">
-          <section>
-            {dailyWeather.length > 0 ? (
-              dailyWeather.map(
-                (elem: {
-                  temperature: number;
-                  endTime: React.ReactNode;
-                  probabilityOfPrecipitation: { value: number };
-                  number: number;
-                  name: string;
-                }) => {
-                  return (
-                    <section key={elem.number}>
-                      <p>{elem.name}</p>
-                      <p>{elem.temperature}</p>
-                      <p>{elem.endTime}</p>
-                      <p>{elem.probabilityOfPrecipitation.value}</p>
-                    </section>
-                  );
-                }
-              )
-            ) : (
-              <p>Loading daily weather...</p>
-            )}
-          </section>
-          <section>
-            {hourlyWeather.length > 0 ? (
-              hourlyWeather.map(
-                (elem: {
-                  temperature: number;
-                  endTime: React.ReactNode;
-                  probabilityOfPrecipitation: { value: number };
-                  number: number;
-                }) => {
-                  return (
-                    <section key={elem.number}>
-                      <p>{elem.temperature}</p>
-                      <p>{elem.endTime}</p>
-                      <p>{elem.probabilityOfPrecipitation.value}</p>
-                    </section>
-                  );
-                }
-              )
-            ) : (
-              <p>Loading hourly weather...</p>
-            )}
-          </section>
+          <DailyWeather dailyWeather={dailyWeather} />
+          <HourlyWeather hourlyWeather={hourlyWeather} />
         </section>
       </main>
     </div>
