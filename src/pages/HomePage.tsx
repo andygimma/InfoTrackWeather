@@ -15,7 +15,7 @@ const HomePage = () => {
         {error && <p>Error: {error}</p>}
 
         <section className="flex">
-          <DailyWeather dailyWeather={dailyWeather} />
+          {/* <DailyWeather dailyWeather={dailyWeather} /> */}
           <HourlyWeather hourlyWeather={hourlyWeather} />
         </section>
       </main>
