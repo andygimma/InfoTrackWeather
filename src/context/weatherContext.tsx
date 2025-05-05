@@ -12,19 +12,25 @@ type defaultStateType = {
   address: Address;
   hourlyWeather: [];
   dailyWeather: [];
+  searchHourlyWeather: [];
+  searchDailyWeather: [];
   loading: boolean;
   error: string | null;
   geocodeError: string | null;
   geocodeLoading: boolean;
+  searchWeather: (lat: number, long: number) => void;
 };
 const defaultState: defaultStateType = {
   address: null,
   hourlyWeather: [],
   dailyWeather: [],
+  searchHourlyWeather: [],
+  searchDailyWeather: [],
   loading: false,
   error: "",
   geocodeError: "",
   geocodeLoading: false,
+  searchWeather: (lat: number, long: number) => {},
 };
 
 const WeatherContext = createContext(defaultState);
@@ -38,6 +44,16 @@ export const WeatherProvider = ({
 
   const [hourlyWeather, setHourlyWeather] = useState<[]>([]);
   const [dailyWeather, setDailyWeather] = useState<[]>([]);
+
+  const [searchHourlyWeather, setSearchHourlyWeather] = useState<[]>([]);
+  const [searchDailyWeather, setSearchDailyWeather] = useState<[]>([]);
+
+  const searchWeather = (lat: number, long: number) => {
+    weatherApi(lat, long).then(([hourly, daily]) => {
+      setSearchHourlyWeather(hourly);
+      setSearchDailyWeather(daily);
+    });
+  };
 
   useEffect(() => {
     if (location) {
@@ -61,6 +77,9 @@ export const WeatherProvider = ({
         address,
         hourlyWeather,
         dailyWeather,
+        searchDailyWeather,
+        searchHourlyWeather,
+        searchWeather,
         loading,
         error,
         geocodeError,

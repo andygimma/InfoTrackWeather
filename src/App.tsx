@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import LocationDetailsPage from "./pages/LocationDetailsPage";
 import { WeatherProvider } from "./context/weatherContext";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/details" element={<LocationDetailsPage />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
     </WeatherProvider>
   );
