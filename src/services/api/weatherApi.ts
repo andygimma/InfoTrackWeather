@@ -11,7 +11,7 @@ export default async function weatherApi(latitude: number, longitude: number) {
     getJson(forecasetHourlyAPI),
   ]);
 
-  return [daily, hourly];
+  return [hourly, daily];
 }
 
 async function getJson(url: string) {
