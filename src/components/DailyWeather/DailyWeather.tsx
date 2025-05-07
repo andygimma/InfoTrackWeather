@@ -54,7 +54,7 @@ interface IDailyWeather {
 function DailyWeather(props: IDailyWeather) {
   // const weatherArray = props.dailyWeather.slice(0, 8);
   const labels = props.dailyWeather.map((elem) => {
-    console.log({ elem });
+    console.log(elem.name);
     return elem.name;
   });
 
@@ -66,17 +66,19 @@ function DailyWeather(props: IDailyWeather) {
         data: props.dailyWeather.map((elem) => {
           return elem.temperature;
         }),
-        backgroundColor: ["rgba(54, 162, 235, 0.2)"],
-        borderColor: ["rgb(54, 162, 235)"],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
         borderWidth: 1,
       },
     ],
   };
 
   return (
-    <section>
+    <section className="md:w-1/2">
       {props.dailyWeather.length > 0 ? (
-        <Bar data={data} plugins={[barValuePlugin]} />
+        <section>
+          <Bar data={data} plugins={[barValuePlugin]} className="w-full" />
+        </section>
       ) : (
         <p>Loading daily weather...</p>
       )}

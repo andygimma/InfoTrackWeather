@@ -13,13 +13,12 @@ const HomePage = () => {
         </p>
         {error && <p>Error: {error}</p>}
 
-        <section className="flex">
-          {/* <DailyWeather dailyWeather={dailyWeather} /> */}
+        <section className="md:flex w-full">
           <HourlyWeather
             hourlyWeather={hourlyWeather}
             label="Hourly Temperature"
           />
-          <DailyWeather dailyWeather={dailyWeather} label="Daily Weather" />
+          <DailyWeather dailyWeather={dailyWeather} label="Daily Temperature" />
         </section>
       </main>
     </div>
