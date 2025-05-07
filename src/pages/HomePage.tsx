@@ -1,9 +1,34 @@
+import { useEffect, useState } from "react";
 import DailyWeather from "../components/DailyWeather/DailyWeather";
 import HourlyWeather from "../components/HourlyWeather/HourlyWeather";
 import { useWeather } from "../context/weatherContext";
+import useGeolocation from "../hooks/useGeolocation/useGeolocation";
+import useReverseGeocode from "../hooks/useReverseGeocode/useReverseGeocode";
+import weatherApi from "../services/api/weatherApi";
 
 const HomePage = () => {
-  const { loading, address, error, hourlyWeather, dailyWeather } = useWeather();
+  const [hourlyWeather, setHourlyWeather] = useState<[]>([]);
+  const [dailyWeather, setDailyWeather] = useState<[]>([]);
+
+  const { loading, location, error, refresh } = useGeolocation();
+
+  const {
+    error: geocodeError,
+    loading: geocodeLoading,
+    address,
+  } = useReverseGeocode(location);
+
+  useEffect(() => {
+    if (location) {
+      weatherApi(location?.latitude, location?.longitude).then(
+        ([hourly, daily]) => {
+          setHourlyWeather(hourly);
+          setDailyWeather(daily);
+        }
+      );
+    }
+  }, [location]);
+
   return (
     <div>
       <main>
