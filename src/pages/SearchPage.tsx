@@ -1,3 +1,5 @@
+import DailyWeather from "../components/DailyWeather/DailyWeather";
+import HourlyWeather from "../components/HourlyWeather/HourlyWeather";
 import { useWeather } from "../context/weatherContext";
 import { FormEvent } from "react";
 
@@ -13,10 +15,8 @@ function SearchPage() {
     if (lat && long) {
       searchWeather(+lat, +long);
     }
-    console.log({ lat, long });
   };
 
-  console.log({ searchDailyWeather, searchHourlyWeather });
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -28,6 +28,16 @@ function SearchPage() {
           Search
         </button>
       </form>
+      <section className="md:flex w-full">
+        <HourlyWeather
+          hourlyWeather={searchHourlyWeather}
+          label="Hourly Temperature"
+        />
+        <DailyWeather
+          dailyWeather={searchDailyWeather}
+          label="Daily Temperature"
+        />
+      </section>
     </div>
   );
 }
