@@ -4,7 +4,6 @@ import { useWeather } from "../context/weatherContext";
 
 const HomePage = () => {
   const { loading, address, error, hourlyWeather, dailyWeather } = useWeather();
-  console.log({ dailyWeather, hourlyWeather });
   return (
     <div>
       <main>
@@ -16,7 +15,11 @@ const HomePage = () => {
 
         <section className="flex">
           {/* <DailyWeather dailyWeather={dailyWeather} /> */}
-          <HourlyWeather hourlyWeather={hourlyWeather} />
+          <HourlyWeather
+            hourlyWeather={hourlyWeather}
+            label="Hourly Temperature"
+          />
+          <DailyWeather dailyWeather={dailyWeather} label="Daily Weather" />
         </section>
       </main>
     </div>

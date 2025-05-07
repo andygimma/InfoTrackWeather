@@ -1,3 +1,43 @@
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+
+const barValuePlugin = {
+  id: "barValuePlugin",
+  afterDatasetsDraw(chart: ChartJS<"bar">) {
+    const { ctx } = chart;
+
+    chart.data.datasets.forEach((dataset, datasetIndex) => {
+      const meta = chart.getDatasetMeta(datasetIndex);
+
+      meta.data.forEach((bar, index) => {
+        const value = dataset.data[index];
+
+        ctx.save();
+        ctx.fillStyle = "black";
+        ctx.font = "bold 12px sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        const x = bar.x;
+        // const y = bar.y + (bar.base - bar.y) / 2;
+        const y = bar.y + 25;
+
+        ctx.fillText(value?.toString() || "", x, y);
+        ctx.restore();
+      });
+    });
+  },
+};
+
 type Weather = {
   temperature: number;
   startTime: Date;
@@ -8,30 +48,35 @@ type Weather = {
 
 interface IDailyWeather {
   dailyWeather: Weather[];
+  label: string;
 }
 
 function DailyWeather(props: IDailyWeather) {
+  // const weatherArray = props.dailyWeather.slice(0, 8);
+  const labels = props.dailyWeather.map((elem) => {
+    console.log({ elem });
+    return elem.name;
+  });
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: props.label,
+        data: props.dailyWeather.map((elem) => {
+          return elem.temperature;
+        }),
+        backgroundColor: ["rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgb(54, 162, 235)"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <section>
       {props.dailyWeather.length > 0 ? (
-        props.dailyWeather.map(
-          (elem: {
-            temperature: number;
-            startTime: Date;
-            probabilityOfPrecipitation: { value: number };
-            number: number;
-            name: string;
-          }) => {
-            return (
-              <section key={elem.number}>
-                <p>{elem.name}</p>
-                <p>{elem.temperature}</p>
-                <p>{formatDate(elem.startTime)}</p>
-                <p>{elem.probabilityOfPrecipitation.value}</p>
-              </section>
-            );
-          }
-        )
+        <Bar data={data} plugins={[barValuePlugin]} />
       ) : (
         <p>Loading daily weather...</p>
       )}
@@ -53,7 +98,7 @@ function formatDate(dateString: Date) {
   hours = hours ? hours : 12;
   const hourString: string = hours.toString().padStart(2, "0");
 
-  return `${day}/${month} ${hourString}:${minutes}${ampm}`;
+  return `${hourString}:${minutes}${ampm}`;
 }
 
 export default DailyWeather;
