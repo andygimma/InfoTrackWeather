@@ -28,7 +28,6 @@ const barValuePlugin = {
         ctx.textBaseline = "middle";
 
         const x = bar.x;
-        // const y = bar.y + (bar.base - bar.y) / 2;
         const y = bar.y + 25;
 
         ctx.fillText(value?.toString() || "", x, y);
@@ -42,6 +41,7 @@ type Weather = {
   temperature: number;
   startTime: Date;
   probabilityOfPrecipitation: { value: number };
+  relativeHumidity: { value: number };
   number: number;
   name: string;
 };
@@ -72,10 +72,46 @@ function HourlyWeather(props: IHourlyWeather) {
     ],
   };
 
+  const rainData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Hourly Precipitation %",
+        data: weatherArray.map((elem) => {
+          console.log({ elem });
+          return elem.probabilityOfPrecipitation.value;
+        }),
+        backgroundColor: ["rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgb(54, 162, 235)"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const humidityData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Hourly Humidity %",
+        data: weatherArray.map((elem) => {
+          console.log({ elem });
+          return elem.relativeHumidity.value;
+        }),
+        backgroundColor: ["rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgb(54, 162, 235)"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <section>
       {props.hourlyWeather.length > 0 ? (
-        <Bar data={data} plugins={[barValuePlugin]} />
+        <>
+          <Bar data={data} plugins={[barValuePlugin]} />
+          <Bar data={rainData} plugins={[barValuePlugin]} />
+          <Bar data={humidityData} plugins={[barValuePlugin]} />
+        </>
       ) : (
         <p>Loading hourly weather...</p>
       )}

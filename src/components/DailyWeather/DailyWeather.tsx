@@ -52,9 +52,7 @@ interface IDailyWeather {
 }
 
 function DailyWeather(props: IDailyWeather) {
-  // const weatherArray = props.dailyWeather.slice(0, 8);
   const labels = props.dailyWeather.map((elem) => {
-    console.log(elem.name);
     return elem.name;
   });
 
