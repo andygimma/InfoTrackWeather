@@ -3,10 +3,9 @@ import DailyWeather from "../components/DailyWeather/DailyWeather";
 import HourlyWeather from "../components/HourlyWeather/HourlyWeather";
 import useGeolocation from "../hooks/useGeolocation/useGeolocation";
 import useReverseGeocode from "../hooks/useReverseGeocode/useReverseGeocode";
-import weatherApi from "../services/api/weatherApi";
-import LoadingDisplay from "../components/LoadingDisplay/LoadingDisplay";
 import GeocodeDisplay from "../components/Loading/GeocodeDisplay";
 import WeatherDisplay from "../components/WeatherDisplay/WeatherDisplay";
+import GeolocationDisplay from "../components/GeolocationDisplay/GeolocationDisplay";
 
 const HomePage = () => {
   const { loading, location, error, refresh } = useGeolocation();
@@ -20,6 +19,11 @@ const HomePage = () => {
   return (
     <div>
       <main>
+        <GeolocationDisplay
+          loading={loading}
+          error={error}
+          location={location}
+        />
         <GeocodeDisplay
           loading={geocodeLoading}
           error={geocodeError}
