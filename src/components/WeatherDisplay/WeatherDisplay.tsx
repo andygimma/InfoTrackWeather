@@ -40,13 +40,16 @@ const WeatherDisplay = ({ location }: WeatherDisplayProps) => {
     return <div>{error}</div>;
   }
   return (
-    <div>
-      <section className="md:flex w-full">
+    <div className="w-full">
+      <section className="md:flex items-center justify-center w-full">
         <HourlyWeather
           hourlyWeather={hourlyWeather}
           label="Hourly Temperature"
         />
-        <DailyWeather dailyWeather={dailyWeather} label="Daily Temperature" />
+        <DailyWeather
+          dailyWeather={dailyWeather}
+          label="Daily Highs and Lows"
+        />
       </section>
     </div>
   );

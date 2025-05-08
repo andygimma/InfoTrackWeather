@@ -15,7 +15,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <main>
+      <main className="px-10 py-10 flex flex-col items-center justify-center">
         <GeolocationDisplay
           loading={loading}
           loadingMessage="Loading Geolocation..."

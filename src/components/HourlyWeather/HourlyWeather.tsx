@@ -65,8 +65,8 @@ function HourlyWeather(props: IHourlyWeather) {
         data: weatherArray.map((elem) => {
           return elem.temperature;
         }),
-        backgroundColor: ["rgba(54, 162, 235, 0.2)"],
-        borderColor: ["rgb(54, 162, 235)"],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+        borderColor: ["rgb(255, 99, 132)"],
         borderWidth: 1,
       },
     ],
@@ -80,7 +80,7 @@ function HourlyWeather(props: IHourlyWeather) {
         data: weatherArray.map((elem) => {
           return elem.probabilityOfPrecipitation.value;
         }),
-        backgroundColor: ["rgba(54, 162, 235, 0.2)"],
+        backgroundColor: ["rgba(54, 162, 0, 0.2)"],
         borderColor: ["rgb(54, 162, 235)"],
         borderWidth: 1,
       },
@@ -95,7 +95,7 @@ function HourlyWeather(props: IHourlyWeather) {
         data: weatherArray.map((elem) => {
           return elem.relativeHumidity.value;
         }),
-        backgroundColor: ["rgba(54, 162, 235, 0.2)"],
+        backgroundColor: ["rgba(54, 111, 235, 0.2)"],
         borderColor: ["rgb(54, 162, 235)"],
         borderWidth: 1,
       },
