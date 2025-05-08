@@ -2,7 +2,7 @@ import React from "react";
 
 type WithLoadingAndErrorProps = {
   loading: boolean;
-  loadingMessage: string;
+  loadingMessage?: string;
   error: string | null;
 };
 
