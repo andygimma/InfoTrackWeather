@@ -1,11 +1,19 @@
 import DailyWeather from "../components/DailyWeather/DailyWeather";
 import HourlyWeather from "../components/HourlyWeather/HourlyWeather";
 import { useWeather } from "../context/weatherContext";
-import { FormEvent } from "react";
+import { FormEvent, useState, useEffect } from "react";
+import weatherApi from "../services/api/weatherApi";
+
+type Location = {
+  latitude: FormDataEntryValue;
+  longitude: FormDataEntryValue;
+} | null;
 
 function SearchPage() {
-  const { searchDailyWeather, searchHourlyWeather, searchWeather } =
-    useWeather();
+  const [location, setLocation] = useState<Location>(null);
+
+  const [hourlyWeather, setHourlyWeather] = useState<[]>([]);
+  const [dailyWeather, setDailyWeather] = useState<[]>([]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,9 +21,20 @@ function SearchPage() {
     const lat = formData.get("lat");
     const long = formData.get("long");
     if (lat && long) {
-      searchWeather(+lat, +long);
+      setLocation({ latitude: lat, longitude: long });
     }
   };
+
+  useEffect(() => {
+    if (location) {
+      weatherApi(+location?.latitude, +location?.longitude).then(
+        ([hourly, daily]) => {
+          setHourlyWeather(hourly);
+          setDailyWeather(daily);
+        }
+      );
+    }
+  }, [location]);
 
   return (
     <div>
@@ -30,13 +49,10 @@ function SearchPage() {
       </form>
       <section className="md:flex w-full">
         <HourlyWeather
-          hourlyWeather={searchHourlyWeather}
+          hourlyWeather={hourlyWeather}
           label="Hourly Temperature"
         />
-        <DailyWeather
-          dailyWeather={searchDailyWeather}
-          label="Daily Temperature"
-        />
+        <DailyWeather dailyWeather={dailyWeather} label="Daily Temperature" />
       </section>
     </div>
   );

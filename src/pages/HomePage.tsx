@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import DailyWeather from "../components/DailyWeather/DailyWeather";
 import HourlyWeather from "../components/HourlyWeather/HourlyWeather";
-import { useWeather } from "../context/weatherContext";
 import useGeolocation from "../hooks/useGeolocation/useGeolocation";
 import useReverseGeocode from "../hooks/useReverseGeocode/useReverseGeocode";
 import weatherApi from "../services/api/weatherApi";
