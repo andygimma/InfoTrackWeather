@@ -11,8 +11,8 @@ type Location = {
 function SearchPage() {
   const [location, setLocation] = useState<Location>(null);
 
-  const [hourlyWeather, setHourlyWeather] = useState<[]>([]);
-  const [dailyWeather, setDailyWeather] = useState<[]>([]);
+  const [hourlyWeather, setHourlyWeather] = useState([]);
+  const [dailyWeather, setDailyWeather] = useState([]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

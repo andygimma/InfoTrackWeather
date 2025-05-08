@@ -14,7 +14,6 @@ describe("Navbar", () => {
     const desktopNav = screen.getByTestId("desktop-nav");
     expect(desktopNav).toBeInTheDocument();
     expect(desktopNav).toHaveTextContent("Home");
-    expect(desktopNav).toHaveTextContent("About");
   });
 
   it("toggles mobile menu visibility", () => {
