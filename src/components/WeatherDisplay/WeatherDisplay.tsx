@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import withLoadingAndError from "../../hocs/WithLoadingAndError";
 import HourlyWeather from "../HourlyWeather/HourlyWeather";
 import DailyWeather from "../DailyWeather/DailyWeather";
 import weatherApi from "../../services/api/weatherApi";
@@ -14,17 +13,32 @@ type WeatherDisplayProps = {
 const WeatherDisplay = ({ location }: WeatherDisplayProps) => {
   const [hourlyWeather, setHourlyWeather] = useState<[]>([]);
   const [dailyWeather, setDailyWeather] = useState<[]>([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (location) {
-      weatherApi(location?.latitude, location?.longitude).then(
-        ([hourly, daily]) => {
+      setLoading(true);
+      weatherApi(location?.latitude, location?.longitude)
+        .then(([hourly, daily]) => {
+          setLoading(false);
           setHourlyWeather(hourly);
           setDailyWeather(daily);
-        }
-      );
+        })
+        .catch((error) => {
+          setError(error);
+          setLoading(false);
+        });
     }
   }, [location]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
   return (
     <div>
       <section className="md:flex w-full">
@@ -38,6 +52,4 @@ const WeatherDisplay = ({ location }: WeatherDisplayProps) => {
   );
 };
 
-const WeatherDisplayWithStates = withLoadingAndError(WeatherDisplay);
-
-export default WeatherDisplayWithStates;
+export default WeatherDisplay;

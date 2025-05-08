@@ -28,7 +28,7 @@ const barValuePlugin = {
         ctx.textBaseline = "middle";
 
         const x = bar.x;
-        const y = bar.y + 25;
+        const y = bar.y + 10;
 
         ctx.fillText(value?.toString() || "", x, y);
         ctx.restore();

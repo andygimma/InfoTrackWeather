@@ -30,7 +30,7 @@ const HomePage = () => {
           address={address}
         />
 
-        <WeatherDisplay loading={loading} error={error} location={location} />
+        <WeatherDisplay location={location} />
       </main>
     </div>
   );
