@@ -8,7 +8,7 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "Search", href: "/search" },
+  { label: "About", href: "/about" },
 ];
 
 const Navbar: React.FC = () => {
