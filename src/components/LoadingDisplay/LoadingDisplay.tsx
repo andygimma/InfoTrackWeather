@@ -1,10 +1,7 @@
 type Props = {
   loading: boolean;
   error: string | null;
-  address: {
-    city: string;
-    state: string;
-  } | null;
+  children: React.ReactElement;
 };
 
 function GeocodeDisplay(props: Props) {
@@ -15,11 +12,7 @@ function GeocodeDisplay(props: Props) {
   if (props.error) {
     return <p>{props.error}</p>;
   }
-  return (
-    <div>
-      {props.address?.city}, {props.address?.state}
-    </div>
-  );
+  return props.children;
 }
 
 export default GeocodeDisplay;

@@ -4,7 +4,7 @@ import HourlyWeather from "../components/HourlyWeather/HourlyWeather";
 import useGeolocation from "../hooks/useGeolocation/useGeolocation";
 import useReverseGeocode from "../hooks/useReverseGeocode/useReverseGeocode";
 import weatherApi from "../services/api/weatherApi";
-import GeocodeDisplay from "../components/GeocodeDisplay/GeocodeDisplay";
+import LoadingDisplay from "../components/LoadingDisplay/LoadingDisplay";
 
 const HomePage = () => {
   const [hourlyWeather, setHourlyWeather] = useState<[]>([]);
@@ -32,12 +32,11 @@ const HomePage = () => {
   return (
     <div>
       <main>
-        <GeocodeDisplay
-          loading={geocodeLoading}
-          error={geocodeError}
-          address={address}
-        />
-        {error && <p>Error: {error}</p>}
+        <LoadingDisplay loading={geocodeLoading} error={geocodeError}>
+          <div>
+            {address?.city}, {address?.state}
+          </div>
+        </LoadingDisplay>
         <section className="md:flex w-full">
           <HourlyWeather
             hourlyWeather={hourlyWeather}
