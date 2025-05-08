@@ -1,6 +1,5 @@
 import DailyWeather from "../components/DailyWeather/DailyWeather";
 import HourlyWeather from "../components/HourlyWeather/HourlyWeather";
-import { useWeather } from "../context/weatherContext";
 import { FormEvent, useState, useEffect } from "react";
 import weatherApi from "../services/api/weatherApi";
 
