@@ -78,7 +78,6 @@ function HourlyWeather(props: IHourlyWeather) {
       {
         label: "Hourly Precipitation %",
         data: weatherArray.map((elem) => {
-          console.log({ elem });
           return elem.probabilityOfPrecipitation.value;
         }),
         backgroundColor: ["rgba(54, 162, 235, 0.2)"],
@@ -94,7 +93,6 @@ function HourlyWeather(props: IHourlyWeather) {
       {
         label: "Hourly Humidity %",
         data: weatherArray.map((elem) => {
-          console.log({ elem });
           return elem.relativeHumidity.value;
         }),
         backgroundColor: ["rgba(54, 162, 235, 0.2)"],
