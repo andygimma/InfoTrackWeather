@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import DailyWeather from "../components/DailyWeather/DailyWeather";
-import HourlyWeather from "../components/HourlyWeather/HourlyWeather";
 import useGeolocation from "../hooks/useGeolocation/useGeolocation";
 import useReverseGeocode from "../hooks/useReverseGeocode/useReverseGeocode";
 import GeocodeDisplay from "../components/Loading/GeocodeDisplay";
@@ -21,11 +18,13 @@ const HomePage = () => {
       <main>
         <GeolocationDisplay
           loading={loading}
+          loadingMessage="Loading Geolocation..."
           error={error}
           location={location}
         />
         <GeocodeDisplay
           loading={geocodeLoading}
+          loadingMessage="Loading Address..."
           error={geocodeError}
           address={address}
         />

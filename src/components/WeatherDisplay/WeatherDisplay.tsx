@@ -33,7 +33,7 @@ const WeatherDisplay = ({ location }: WeatherDisplayProps) => {
   }, [location]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading weather charts...</div>;
   }
 
   if (error) {

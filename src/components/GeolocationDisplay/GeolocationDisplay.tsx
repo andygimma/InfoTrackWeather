@@ -12,7 +12,8 @@ type Props = {
 const GeocodeDisplay = ({ location }: Props) => {
   return (
     <div>
-      {location?.latitude}, {location?.longitude}
+      Current latitude and longitude: {location?.latitude.toFixed(2)},{" "}
+      {location?.longitude.toFixed(2)}
     </div>
   );
 };
