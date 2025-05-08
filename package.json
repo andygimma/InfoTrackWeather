@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "jest-canvas-mock": "^2.5.2",
     "tailwindcss": "^3.4.17"
   }
 }
