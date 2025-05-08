@@ -6,11 +6,9 @@ import useReverseGeocode from "../hooks/useReverseGeocode/useReverseGeocode";
 import weatherApi from "../services/api/weatherApi";
 import LoadingDisplay from "../components/LoadingDisplay/LoadingDisplay";
 import GeocodeDisplay from "../components/Loading/GeocodeDisplay";
+import WeatherDisplay from "../components/WeatherDisplay/WeatherDisplay";
 
 const HomePage = () => {
-  const [hourlyWeather, setHourlyWeather] = useState<[]>([]);
-  const [dailyWeather, setDailyWeather] = useState<[]>([]);
-
   const { loading, location, error, refresh } = useGeolocation();
 
   const {
@@ -18,17 +16,6 @@ const HomePage = () => {
     loading: geocodeLoading,
     address,
   } = useReverseGeocode(location);
-
-  useEffect(() => {
-    if (location) {
-      weatherApi(location?.latitude, location?.longitude).then(
-        ([hourly, daily]) => {
-          setHourlyWeather(hourly);
-          setDailyWeather(daily);
-        }
-      );
-    }
-  }, [location]);
 
   return (
     <div>
@@ -38,13 +25,8 @@ const HomePage = () => {
           error={geocodeError}
           address={address}
         />
-        <section className="md:flex w-full">
-          <HourlyWeather
-            hourlyWeather={hourlyWeather}
-            label="Hourly Temperature"
-          />
-          <DailyWeather dailyWeather={dailyWeather} label="Daily Temperature" />
-        </section>
+
+        <WeatherDisplay loading={loading} error={error} location={location} />
       </main>
     </div>
   );
