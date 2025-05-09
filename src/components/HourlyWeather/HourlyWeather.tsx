@@ -111,7 +111,10 @@ function HourlyWeather(props: IHourlyWeather) {
           <Bar data={humidityData} plugins={[barValuePlugin]} />
         </>
       ) : (
-        <section data-testid="hourly-weather-loading-section">
+        <section
+          data-testid="hourly-weather-loading-section"
+          className="mr-10 md:hidden"
+        >
           <p>Loading hourly weather...</p>
         </section>
       )}

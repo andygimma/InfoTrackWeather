@@ -16,6 +16,14 @@ const HomePage = () => {
   return (
     <div>
       <main className="px-10 py-10 flex flex-col items-center justify-center">
+        <h1 className="text-3xl">Welcome to InfoTrack Weather</h1>
+        {loading && (
+          <p className="underline">
+            Please allow location information so that you can see your local
+            weather.
+          </p>
+        )}
+
         <GeolocationDisplay
           loading={loading}
           loadingMessage="Loading Geolocation..."
@@ -28,7 +36,6 @@ const HomePage = () => {
           error={geocodeError}
           address={address}
         />
-
         <WeatherDisplay location={location} />
       </main>
     </div>
