@@ -73,9 +73,15 @@ function DailyWeather(props: IDailyWeather) {
 
   return (
     <section className="md:w-1/2">
-      <section data-testid="daily-weather-section">
-        <Bar data={data} plugins={[barValuePlugin]} className="w-full" />
-      </section>
+      {props.dailyWeather.length > 0 ? (
+        <section data-testid="daily-weather-section">
+          <Bar data={data} plugins={[barValuePlugin]} className="w-full" />
+        </section>
+      ) : (
+        <section data-testid="daily-weather-loading-section">
+          <p>Loading daily weather...</p>
+        </section>
+      )}
     </section>
   );
 }
