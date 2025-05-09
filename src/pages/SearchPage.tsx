@@ -1,4 +1,3 @@
-import useGeolocation from "../hooks/useGeolocation/useGeolocation";
 import useReverseGeocode from "../hooks/useReverseGeocode/useReverseGeocode";
 import { useParams } from "react-router";
 import GeocodeDisplay from "../components/Loading/GeocodeDisplay";
@@ -8,7 +7,6 @@ import { useMemo } from "react";
 
 const HomePage = () => {
   const params = useParams<{ lat: string; long: string }>();
-  // const { loading, location, error, refresh } = useGeolocation();
 
   const location = useMemo(
     () => ({

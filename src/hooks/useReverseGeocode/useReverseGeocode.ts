@@ -54,7 +54,6 @@ export default function useReverseGeocode(location: GeoLocation) {
     fetchAddress();
 
     return () => {
-      console.log("abort2");
       controller.abort(); // cancel fetch if location changes or component unmounts
     };
   }, [location?.latitude, location?.longitude]);
