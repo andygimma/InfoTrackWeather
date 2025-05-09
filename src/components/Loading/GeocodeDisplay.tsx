@@ -10,7 +10,7 @@ type GeocodeDisplayProps = {
 const GeocodeDisplay = ({ address }: GeocodeDisplayProps) => {
   return (
     <div>
-      {address?.city}, {address?.state}
+      {address?.city} {address?.state}
     </div>
   );
 };
