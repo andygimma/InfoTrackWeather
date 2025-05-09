@@ -19,13 +19,16 @@ const WeatherDisplay = ({ location }: WeatherDisplayProps) => {
   useEffect(() => {
     if (location) {
       setLoading(true);
+      setError(null);
       weatherApi(location?.latitude, location?.longitude)
         .then(([hourly, daily]) => {
+          console.log({ hourly, daily });
           setLoading(false);
           setHourlyWeather(hourly);
           setDailyWeather(daily);
         })
         .catch((error) => {
+          console.log({ error });
           setError(error);
           setLoading(false);
         });
@@ -37,7 +40,11 @@ const WeatherDisplay = ({ location }: WeatherDisplayProps) => {
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return (
+      <div className="underline text-red-700">
+        Sorry, an error has occurred. Please try again.
+      </div>
+    );
   }
   return (
     <div className="w-full">
