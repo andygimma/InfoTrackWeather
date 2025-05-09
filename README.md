@@ -33,3 +33,4 @@ The search page shows the weather for a specific location. This location is read
 
 - Improve the design of loading and error states.
 - Add validation to the Search Bar.
+- Add Google API to the Search Bar so that we can search via the validated name of a location, rather than with latitude and longitude.
