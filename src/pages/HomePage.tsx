@@ -5,7 +5,7 @@ import WeatherDisplay from "../components/WeatherDisplay/WeatherDisplay";
 import GeolocationDisplay from "../components/GeolocationDisplay/GeolocationDisplay";
 
 const HomePage = () => {
-  const { loading, location, error, refresh } = useGeolocation();
+  const { loading, location, error } = useGeolocation();
 
   const {
     error: geocodeError,
@@ -23,6 +23,8 @@ const HomePage = () => {
             weather.
           </p>
         )}
+
+        {error && <p>Error: {error}</p>}
 
         <GeolocationDisplay
           loading={loading}
