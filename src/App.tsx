@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search/:lat/:long" element={<SearchPage />} />
+        <Route path="*" element={<div>404 error</div>} />
       </Routes>
     </>
   );
