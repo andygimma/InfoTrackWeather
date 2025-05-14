@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import DailyWeather from "../DailyWeather/DailyWeather";
 import HourlyWeather from "../HourlyWeather/HourlyWeather";
 import weatherApi from "../../services/api/weatherApi";
+import useWeatherApi from "../../hooks/useWeatherApi/useWeatherApi";
 
 type WeatherDisplayProps = {
   location: {
@@ -12,29 +13,8 @@ type WeatherDisplayProps = {
 };
 
 const WeatherDisplay = ({ location }: WeatherDisplayProps) => {
-  const [hourlyWeather, setHourlyWeather] = useState<[]>([]);
-  const [dailyWeather, setDailyWeather] = useState<[]>([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (location) {
-      setLoading(true);
-      setError(null);
-      weatherApi(location?.latitude, location?.longitude)
-        .then(([hourly, daily]) => {
-          console.log({ hourly, daily });
-          setLoading(false);
-          setHourlyWeather(hourly);
-          setDailyWeather(daily);
-        })
-        .catch((error) => {
-          console.log({ error });
-          setError(error);
-          setLoading(false);
-        });
-    }
-  }, [location]);
+  const { dailyWeather, error, hourlyWeather, loading } =
+    useWeatherApi(location);
 
   if (loading) {
     return <div>Loading weather charts...</div>;
