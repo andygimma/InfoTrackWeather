@@ -10,11 +10,15 @@ type Props = {
 };
 
 const GeocodeDisplay = ({ location }: Props) => {
+  if (location === null) {
+    return <div className="min-h-[24px]"></div>;
+  }
+
   return (
-    <div>
-      Current latitude and longitude: {location?.latitude.toFixed(2)},{" "}
+    <p>
+      Current latitude and longitude: {location?.latitude.toFixed(2)}{" "}
       {location?.longitude.toFixed(2)}
-    </div>
+    </p>
   );
 };
 

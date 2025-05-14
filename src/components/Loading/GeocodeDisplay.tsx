@@ -8,10 +8,14 @@ type GeocodeDisplayProps = {
 };
 
 const GeocodeDisplay = ({ address }: GeocodeDisplayProps) => {
+  if (address === null) {
+    return <div className="min-h-[24px]"></div>;
+  }
+
   return (
-    <div>
+    <p>
       {address?.city}, {address?.state}
-    </div>
+    </p>
   );
 };
 
