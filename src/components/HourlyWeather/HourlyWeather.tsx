@@ -7,6 +7,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import moment from "moment";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -123,20 +124,7 @@ function HourlyWeather(props: IHourlyWeather) {
 }
 
 function formatDate(dateString: Date) {
-  const date = new Date(dateString);
-
-  const day: string = date.getDate().toString().padStart(2, "0");
-  const month: string = (date.getMonth() + 1).toString().padStart(2, "0");
-
-  let hours: number = date.getHours();
-  const minutes: string = date.getMinutes().toString().padStart(2, "0");
-  const ampm: string = hours >= 12 ? "pm" : "am";
-
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-  const hourString: string = hours.toString().padStart(2, "0");
-
-  return `${hourString}:${minutes}${ampm}`;
+  return moment(dateString).format("hh:mma");
 }
 
 export default HourlyWeather;
