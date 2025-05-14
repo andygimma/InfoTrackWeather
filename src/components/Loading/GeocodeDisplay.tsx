@@ -9,7 +9,7 @@ type GeocodeDisplayProps = {
 
 const GeocodeDisplay = ({ address }: GeocodeDisplayProps) => {
   if (address === null) {
-    return <div className="min-h-[24px]"></div>;
+    return <div className="min-h-[24px]" data-testid="geocode-filler"></div>;
   }
 
   return (

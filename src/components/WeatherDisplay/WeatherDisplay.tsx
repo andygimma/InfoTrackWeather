@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import HourlyWeather from "../HourlyWeather/HourlyWeather";
+
 import DailyWeather from "../DailyWeather/DailyWeather";
+import HourlyWeather from "../HourlyWeather/HourlyWeather";
 import weatherApi from "../../services/api/weatherApi";
 
 type WeatherDisplayProps = {

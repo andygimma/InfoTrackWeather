@@ -1,8 +1,8 @@
+import GeocodeDisplay from "../components/Loading/GeocodeDisplay";
+import GeolocationDisplay from "../components/GeolocationDisplay/GeolocationDisplay";
 import useGeolocation from "../hooks/useGeolocation/useGeolocation";
 import useReverseGeocode from "../hooks/useReverseGeocode/useReverseGeocode";
-import GeocodeDisplay from "../components/Loading/GeocodeDisplay";
 import WeatherDisplay from "../components/WeatherDisplay/WeatherDisplay";
-import GeolocationDisplay from "../components/GeolocationDisplay/GeolocationDisplay";
 
 const HomePage = () => {
   const { loading, location, error } = useGeolocation();

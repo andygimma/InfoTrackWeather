@@ -1,9 +1,10 @@
-import useReverseGeocode from "../hooks/useReverseGeocode/useReverseGeocode";
-import { useParams } from "react-router";
-import GeocodeDisplay from "../components/Loading/GeocodeDisplay";
-import WeatherDisplay from "../components/WeatherDisplay/WeatherDisplay";
-import GeolocationDisplay from "../components/GeolocationDisplay/GeolocationDisplay";
 import { useMemo } from "react";
+import { useParams } from "react-router";
+
+import GeocodeDisplay from "../components/Loading/GeocodeDisplay";
+import GeolocationDisplay from "../components/GeolocationDisplay/GeolocationDisplay";
+import useReverseGeocode from "../hooks/useReverseGeocode/useReverseGeocode";
+import WeatherDisplay from "../components/WeatherDisplay/WeatherDisplay";
 
 const HomePage = () => {
   const params = useParams<{ lat: string; long: string }>();

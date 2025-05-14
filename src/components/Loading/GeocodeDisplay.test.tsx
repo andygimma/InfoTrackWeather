@@ -33,6 +33,7 @@ describe("GeocodeDisplay", () => {
 
   it("renders nothing meaningful if address is null and no error/loading", () => {
     render(<GeocodeDisplay loading={false} error={null} address={null} />);
-    expect(screen.getByText(/,/)).toBeInTheDocument(); // Will render ", " from `undefined, undefined`
+    const loadingSection = screen.getByTestId("geocode-filler");
+    expect(loadingSection).toBeInTheDocument();
   });
 });

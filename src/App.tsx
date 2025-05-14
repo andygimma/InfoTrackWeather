@@ -1,11 +1,10 @@
-import { Routes, Route, useParams } from "react-router";
+import { Routes, Route } from "react-router";
 
-import Navbar from "./components/Navbar/Navbar";
-
-import HomePage from "./pages/HomePage";
-import SearchPage from "./pages/SearchPage";
-import SearchBar from "./components/SearchBar/SearchBar";
 import AboutPage from "./pages/AboutPage";
+import HomePage from "./pages/HomePage";
+import Navbar from "./components/Navbar/Navbar";
+import SearchBar from "./components/SearchBar/SearchBar";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
