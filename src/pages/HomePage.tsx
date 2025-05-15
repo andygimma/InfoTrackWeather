@@ -24,8 +24,6 @@ const HomePage = () => {
           </p>
         )}
 
-        {error && <p>Error: {error}</p>}
-
         <GeolocationDisplay
           loading={loading}
           loadingMessage="Loading Geolocation..."
