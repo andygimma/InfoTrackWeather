@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import SearchBar from "./components/SearchBar/SearchBar";
 import SearchPage from "./pages/SearchPage";
 import ComparePage from "./pages/ComparePage";
+import Error404Page from "./pages/Error404Page";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           element={<ComparePage />}
         />
 
-        <Route path="*" element={<div>404 error</div>} />
+        <Route path="*" element={<Error404Page />} />
       </Routes>
     </>
   );
