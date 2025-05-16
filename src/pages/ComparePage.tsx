@@ -73,8 +73,15 @@ function ComparePage() {
           address={address1}
         />
 
-        <HourlyWeather label="hourly label" hourlyWeather={hourlyWeather1} />
-        <DailyWeather label="some label" dailyWeather={dailyWeather1} full />
+        <HourlyWeather
+          label="Hourly Temperature"
+          hourlyWeather={hourlyWeather1}
+        />
+        <DailyWeather
+          label="Daily Temperature"
+          dailyWeather={dailyWeather1}
+          full
+        />
       </section>
       <section className="px-10 py-10 flex flex-col items-center justify-center">
         <GeolocationDisplay
@@ -90,8 +97,15 @@ function ComparePage() {
           address={address2}
         />
 
-        <HourlyWeather label="hourly label" hourlyWeather={hourlyWeather2} />
-        <DailyWeather label="some label" dailyWeather={dailyWeather1} full />
+        <HourlyWeather
+          label="Hourly Temperature"
+          hourlyWeather={hourlyWeather2}
+        />
+        <DailyWeather
+          label="Daily Temperature"
+          dailyWeather={dailyWeather1}
+          full
+        />
       </section>
     </div>
   );
