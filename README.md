@@ -29,6 +29,10 @@ The home page allows a user to accept location services and to see their local w
 
 The search page shows the weather for a specific location. This location is read from the url as latitude and longitude. This can be shared as a link, or can be navigated to by adding latitude and longitude to the search bar, and clicking the submit button.
 
+#### Comparison Page
+
+Works like the search page, but with 2 latitudes and 2 longitudes. Some design changes were made to make this page more usable.
+
 ### Future Improvements
 
 - Improve the design of loading and error states.
