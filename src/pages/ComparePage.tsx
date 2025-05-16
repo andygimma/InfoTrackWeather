@@ -4,6 +4,9 @@ import useReverseGeocode from "../hooks/useReverseGeocode/useReverseGeocode";
 import GeolocationDisplay from "../components/GeolocationDisplay/GeolocationDisplay";
 import GeocodeDisplay from "../components/Loading/GeocodeDisplay";
 import WeatherDisplay from "../components/WeatherDisplay/WeatherDisplay";
+import useWeatherApi from "../hooks/useWeatherApi/useWeatherApi";
+import DailyWeather from "../components/DailyWeather/DailyWeather";
+import HourlyWeather from "../components/HourlyWeather/HourlyWeather";
 
 function ComparePage() {
   const params = useParams<{
@@ -41,8 +44,21 @@ function ComparePage() {
     address: address2,
   } = useReverseGeocode(location2);
 
+  const {
+    dailyWeather: dailyWeather1,
+    error: error1,
+    hourlyWeather: hourlyWeather1,
+    loading: loading1,
+  } = useWeatherApi(location1);
+
+  const {
+    dailyWeather: dailyWeather2,
+    error: error2,
+    hourlyWeather: hourlyWeather2,
+    loading: loading2,
+  } = useWeatherApi(location2);
   return (
-    <>
+    <div className="md:flex items-center justify-center">
       <section className="px-10 py-10 flex flex-col items-center justify-center">
         <GeolocationDisplay
           loading={false}
@@ -57,7 +73,8 @@ function ComparePage() {
           address={address1}
         />
 
-        <WeatherDisplay location={location1} />
+        <HourlyWeather label="hourly label" hourlyWeather={hourlyWeather1} />
+        <DailyWeather label="some label" dailyWeather={dailyWeather1} full />
       </section>
       <section className="px-10 py-10 flex flex-col items-center justify-center">
         <GeolocationDisplay
@@ -73,9 +90,10 @@ function ComparePage() {
           address={address2}
         />
 
-        <WeatherDisplay location={location2} />
+        <HourlyWeather label="hourly label" hourlyWeather={hourlyWeather2} />
+        <DailyWeather label="some label" dailyWeather={dailyWeather1} full />
       </section>
-    </>
+    </div>
   );
 }
 

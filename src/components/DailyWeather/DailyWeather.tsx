@@ -49,9 +49,11 @@ type Weather = {
 interface IDailyWeather {
   dailyWeather: Weather[];
   label: string;
+  full?: boolean;
 }
 
 function DailyWeather(props: IDailyWeather) {
+  const className = `${props.full ? "" : "md:w-1/2"}`;
   const labels = props.dailyWeather.map((elem) => {
     return elem.name;
   });
@@ -72,7 +74,7 @@ function DailyWeather(props: IDailyWeather) {
   };
 
   return (
-    <section className="md:w-1/2">
+    <section className={className}>
       {props.dailyWeather.length > 0 ? (
         <section data-testid="daily-weather-section">
           <Bar data={data} plugins={[barValuePlugin]} className="w-full" />
